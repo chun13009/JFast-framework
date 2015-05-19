@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="CBPM-EMS-UI" basedir="." default="CBPM-EMS-UI">
+	<description>CBPM-EMS-UI build</description>
+	<property environment="env" />
+	<property name="build.version" value="1.0.0" />
+	<property name="build.home" value="${env.JT_HOME}" />
+	<property name="build.lib" location="${build.home}/lib" />
+	<property name="thirdparty.lib" location="${build.lib}/thirdparty" />
+	<property name="web.home" value="../JTWeb" />
+	<property name="web.lib" location="${web.home}/WebContent/WEB-INF/lib" />
+	<property name="src.dir" location="./src" />
+	<property name="class.dir" location="./bin" />
+	<property name="web.dir" location="./WebContent" />
+	<property name="config.dir" location="./config" />
+	<property name="sql.dir" location="./sql" />
+	<tstamp>
+		<format property="bak.time" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+	<path id="classpath">
+		<fileset dir="${thirdparty.lib}" includes="*.jar" />
+		<fileset dir="${build.lib}" includes="*.jar" excludes="cbpm-ems-ui*.jar" />
+	</path>
+	<path id="srcpath">
+		<pathelement location="./src" />
+	</path>
+	<target name="CBPM-EMS-UI" depends="clean, build, dist,native,classclean">
+		<echo> finished build CBPM-EMS-UI code</echo>
+	</target>
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${build.lib}" includes="cbpm-ems-ui*.jar" />
+			<fileset dir="${class.dir}" includes="**/*.*" />
+		</delete>
+		<mkdir dir="${class.dir}" />
+	</target>
+	<target name="build" depends="clean">
+		<javac classpathref="classpath" source="1.5" destdir="${class.dir}" debug="on" fork="yes" encoding="UTF-8" failonerror="true">
+			<src refid="srcpath" />
+		</javac>
+		<copy todir="${class.dir}" overwrite="true" failonerror="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.xls" />
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+		<copy todir="${build.home}/config/cbpm-ems-ui" overwrite="true" failonerror="true">
+			<fileset dir="${config.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+				<include name="**/*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${build.home}/sql" overwrite="true" failonerror="true">
+			<fileset dir="${sql.dir}">
+				<include name="**/*.sql" />
+			</fileset>
+		</copy>
+		<copy todir="${build.home}/i18n/labels/" overwrite="true" failonerror="true">
+			<fileset dir="${config.dir}/i18n/labels">
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="dist" depends="build">
+		<jar destfile="${build.lib}/cbpm-ems-ui-${build.version}.jar">
+			<fileset dir="${class.dir}">
+				<include name="app/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+			<fileset dir="${class.dir}">
+				<include name="com/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+			<fileset dir="${class.dir}">
+				<include name="cbpm/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+			<fileset dir="${web.dir}">
+				<include name="web/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.zul" />
+				<include name="*.js" />
+				<include name="*.*" />
+			</fileset>
+			<fileset dir="${web.dir}">
+				<include name="metainfo/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.*" />
+			</fileset>
+			<manifest>
+				<section name="version">
+					<attribute name="Built-By" value="JT" />
+					<attribute name="version" value="CBPM-EMS-UI@${bak.time}" />
+				</section>
+			</manifest>
+		</jar>
+		<echo> finished dist CBPM-EMS-UI.jar </echo>
+	</target>
+	<target name="native">
+		<native2ascii src="./locale_src" encoding="UTF-8" includes="cbpm-ems-ui/*.properties" dest="${build.home}/i18n/App" />
+	</target>
+	<target name="classclean">
+		<delete dir="./bin/"></delete>
+		<echo> finished CBPM-EMS-UI classclean</echo>
+	</target>
+</project>
