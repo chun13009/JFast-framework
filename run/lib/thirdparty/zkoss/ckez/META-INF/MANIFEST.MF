@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.2
+Created-By: 1.6.0_22-b04 (Sun Microsystems Inc.)
+Specification-Title: The ZK Ckeditor Components
+Specification-Version: 3.6.4.0
+Specification-Vendor: Potix Corporation
+Implementation-Title: org.zkforge.ckez
+Implementation-URL: http://www.zkforge.org/ckez
+Implementation-Version: 3.6.4.0
+Implementation-Vendor: Potix Corporation
+

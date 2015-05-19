@@ -1,0 +1,1 @@
+(function(){var b={canUndo:false,exec:function(d){var c=d.document.createElement("hr");d.insertElement(c)}};var a="horizontalrule";CKEDITOR.plugins.add(a,{init:function(c){c.addCommand(a,b);c.ui.addButton("HorizontalRule",{label:c.lang.horizontalrule,command:a})}})})();

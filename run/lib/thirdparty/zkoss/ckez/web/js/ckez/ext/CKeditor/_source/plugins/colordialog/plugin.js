@@ -1,0 +1,1 @@
+CKEDITOR.plugins.colordialog={requires:["dialog"],init:function(a){a.addCommand("colordialog",new CKEDITOR.dialogCommand("colordialog"));CKEDITOR.dialog.add("colordialog",this.path+"dialogs/colordialog.js")}};CKEDITOR.plugins.add("colordialog",CKEDITOR.plugins.colordialog);
