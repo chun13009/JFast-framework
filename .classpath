@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="run/lib/thirdparty/druid-1.0.9.jar"/>
 	<classpathentry kind="lib" path="run/lib/thirdparty/ehcache-2.9.0.jar"/>
 	<classpathentry kind="lib" path="run/lib/thirdparty/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="run/lib/thirdparty/spring/org.springframework.transaction-3.0.5.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 
-import com.jfast.spring.model.SpringBean;
-import com.jfast.spring.model.SpringBeanProperty;
+import com.jfast.platform.model.SpringBean;
+import com.jfast.platform.model.SpringBeanProperty;
 
 public class JCBeanUtil extends SpringBeanUtil {
 	private static final long serialVersionUID = 1L;

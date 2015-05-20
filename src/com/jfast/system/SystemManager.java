@@ -1,5 +1,7 @@
 package com.jfast.system;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -8,6 +10,7 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 import com.jfast.database.DataBaseManager;
 import com.jfast.model.BaseModel;
 import com.jfast.model.IModel;
+import com.jfast.model.UserSession;
 import com.jfast.model.tools.ModelDescriberManager;
 
 public class SystemManager {
@@ -18,7 +21,6 @@ public class SystemManager {
 	private DataSourceTransactionManager transactionManager;
 	private JtaTransactionManager jtaTxManager;
 	private DataSource dataSource;
-	
 
 	public void setName(String name) {
 		this.name = name;
@@ -74,6 +76,49 @@ public class SystemManager {
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
-	
-	
+
+	public IModel insert(IModel model, UserSession userSession) throws Exception {
+		return dataBaseManager.insert(model, userSession);
+	}
+
+	public List<IModel> insert(List<IModel> modelList, UserSession userSession) throws Exception {
+		return dataBaseManager.insert(modelList, userSession);
+	}
+
+	public IModel delete(IModel model, UserSession userSession) throws Exception {
+		return dataBaseManager.delete(model, userSession);
+	}
+
+	public List<IModel> delete(List<IModel> modelList, UserSession userSession) throws Exception {
+		return dataBaseManager.delete(modelList, userSession);
+	}
+
+	public IModel update(IModel model, UserSession userSession) throws Exception {
+		return dataBaseManager.update(model, userSession);
+	}
+
+	public List<IModel> update(List<IModel> modelList, UserSession userSession) throws Exception {
+		return dataBaseManager.update(modelList, userSession);
+	}
+
+	public List<IModel> execute(List<IModel> modelList, UserSession userSession) throws Exception {
+		Boolean isJtaTrans = Boolean.valueOf(false);
+		SystemManager mgr= modelList.get(0).getSystemManager();
+		String systemManagerName =mgr.getName();
+		for (IModel iModel : modelList) {
+			if (isJtaTrans=!systemManagerName.equalsIgnoreCase(iModel.getSystemManager().getName())) {
+				 break;
+			}
+		}
+		
+		if (isJtaTrans) {
+			if (mgr.getJtaTxManager()==null) {
+				//TODO 初始化多数据源事务管理器
+			}
+			return mgr.getDataBaseManager().executeJta(modelList, userSession);
+		} else {
+			return mgr.getDataBaseManager().execute(modelList, userSession);
+		}
+	}
+
 }

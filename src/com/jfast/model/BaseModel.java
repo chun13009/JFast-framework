@@ -4,7 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.jfast.model.describer.ModelDescriber;
-import com.jfast.model.tools.ModelDescriberManager;
 import com.jfast.system.SystemManager;
 
 

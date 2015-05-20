@@ -200,22 +200,22 @@ public class DataBaseSpringJDBCManager extends JdbcDaoSupport implements DataBas
 	}
 
 	@Override
-	public List<IModel> query(IModel model, UserSession userSession, boolean isCache) {
-		return query(model, null, null, userSession, isCache);
+	public List<IModel> query(IModel model, UserSession userSession) {
+		return query(model, null, null, userSession);
 	}
 
 	@Override
-	public List<IModel> query(IModel model, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache) {
-		return query(model, null, null, null, userSession, isCache);
+	public List<IModel> query(IModel model, Integer startIndex, Integer pageSize, UserSession userSession) {
+		return query(model, null, null, null, userSession);
 	}
 
 	@Override
-	public List<IModel> query(IModel model, Map<String, Object> paramMap, UserSession userSession, boolean isCache) {
-		return query(model, paramMap, null, null, userSession, isCache);
+	public List<IModel> query(IModel model, Map<String, Object> paramMap, UserSession userSession) {
+		return query(model, paramMap, null, null, userSession);
 	}
 
 	@Override
-	public List<IModel> query(IModel model, Map<String, Object> paramMap, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache) {
+	public List<IModel> query(IModel model, Map<String, Object> paramMap, Integer startIndex, Integer pageSize, UserSession userSession) {
 		SQLObject sqlObject = buildSQLDialect.query(null, model.getModelDescriber().getModelContent(), model.getModelDescriber(), model.getModelDescriber().getAttributeNames(),
 				model.getAttributes(), paramMap, startIndex, pageSize);
 		List<Map<String, Object>> dataList = namedParameterJdbcTemplate.queryForList(sqlObject.getSQL(), sqlObject.getValues());
@@ -223,19 +223,19 @@ public class DataBaseSpringJDBCManager extends JdbcDaoSupport implements DataBas
 	}
 
 	@Override
-	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, UserSession userSession, boolean isCache) {
-		return query(sql, sqlParamMap, null, null, userSession, isCache);
+	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, UserSession userSession) {
+		return query(sql, sqlParamMap, null, null, userSession);
 	}
 
 	@Override
-	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache) {
+	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, Integer startIndex, Integer pageSize, UserSession userSession) {
 		SQLObject sqlObject = buildSQLDialect.query("*", sql, null, null, sqlParamMap, null, startIndex, pageSize);
 		List<Map<String, Object>> dataList = namedParameterJdbcTemplate.queryForList(sqlObject.getSQL(), sqlObject.getValues());
 		return buildQueryResult(null, dataList);
 	}
 
 	@Override
-	public Object Aggregate(IModel model, String function, String attributeName, Map<String, Object> paramMap, UserSession userSession, boolean isCache) {
+	public Object Aggregate(IModel model, String function, String attributeName, Map<String, Object> paramMap, UserSession userSession) {
 		SQLObject sqlObject = buildSQLDialect.query(MessageFormat.format(function, attributeName), model.getModelDescriber().getModelContent(), model.getModelDescriber(), null,
 				model.getAttributes(), paramMap, null, null);
 		List<Map<String, Object>> dataList = namedParameterJdbcTemplate.queryForList(sqlObject.getSQL(), sqlObject.getValues());

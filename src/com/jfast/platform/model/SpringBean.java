@@ -1,4 +1,4 @@
-package com.jfast.spring.model;
+package com.jfast.platform.model;
 
 import java.util.List;
 

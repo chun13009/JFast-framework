@@ -85,7 +85,7 @@ public class CacheStore {
 		getOrAddCache(cacheName).removeAll();
 	}
 	
-	public void shutdown() {
+	public static void shutdown() {
 		cacheManager.shutdown();
 	}
 	

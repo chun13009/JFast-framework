@@ -43,19 +43,19 @@ public abstract interface DataBaseManager {
 
 	public abstract List<IModel> executeJta(List<IModel> modelList, UserSession userSession) throws Exception;
 
-	public abstract List<IModel> query(IModel model, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(IModel model, UserSession userSession);
 
-	public abstract List<IModel> query(IModel model, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(IModel model, Integer startIndex, Integer pageSize, UserSession userSession);
 
-	public abstract List<IModel> query(String sql, Map<String, Object> sqlParamMap, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(String sql, Map<String, Object> sqlParamMap, UserSession userSession);
 
-	public abstract List<IModel> query(String sql, Map<String, Object> sqlParamMap, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(String sql, Map<String, Object> sqlParamMap, Integer startIndex, Integer pageSize, UserSession userSession);
 
-	public abstract List<IModel> query(IModel model, Map<String, Object> paramMap, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(IModel model, Map<String, Object> paramMap, UserSession userSession);
 
-	public abstract List<IModel> query(IModel model, Map<String, Object> paramMap, Integer startIndex, Integer pageSize, UserSession userSession, boolean isCache);
+	public abstract List<IModel> query(IModel model, Map<String, Object> paramMap, Integer startIndex, Integer pageSize, UserSession userSession);
 
-	public abstract Object Aggregate(IModel model, String function, String attributeName, Map<String, Object> paramMap, UserSession userSession, boolean isCache);
+	public abstract Object Aggregate(IModel model, String function, String attributeName, Map<String, Object> paramMap, UserSession userSession);
 
 	public abstract ModelDescriber buildModelAttributeDescriber(ModelDescriber modelDescriber);
 

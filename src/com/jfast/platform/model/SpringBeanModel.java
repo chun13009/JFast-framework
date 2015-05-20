@@ -1,4 +1,4 @@
-package com.jfast.spring.model;
+package com.jfast.platform.model;
 
 import com.jfast.model.BaseModel;
 
