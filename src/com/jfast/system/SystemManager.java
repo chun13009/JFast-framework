@@ -8,7 +8,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import com.jfast.database.DataBaseManager;
-import com.jfast.model.BaseModel;
+import com.jfast.model.Model;
 import com.jfast.model.IModel;
 import com.jfast.model.UserSession;
 import com.jfast.model.tools.ModelDescriberManager;
@@ -31,7 +31,7 @@ public class SystemManager {
 	}
 
 	public IModel createModelObject(String modelName) {
-		IModel model = new BaseModel();
+		IModel model = new Model();
 		model.setSystemManager(this);
 		model.setModelDescriber(ModelDescriberManager.getModelDescriber(getName(), modelName));
 		return model;

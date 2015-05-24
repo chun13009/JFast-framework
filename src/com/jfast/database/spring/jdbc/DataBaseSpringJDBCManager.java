@@ -28,7 +28,7 @@ import com.jfast.database.dialect.OracleBuildSQLDialect;
 import com.jfast.database.dialect.PostgreSQLBuildSQLDialect;
 import com.jfast.database.dialect.Sqlite3BuildSQLDialect;
 import com.jfast.database.dialect.sql.SQLObject;
-import com.jfast.model.BaseModel;
+import com.jfast.model.Model;
 import com.jfast.model.IModel;
 import com.jfast.model.UserSession;
 import com.jfast.model.describer.ModelAttributeDescriber;
@@ -347,7 +347,7 @@ public class DataBaseSpringJDBCManager extends JdbcDaoSupport implements DataBas
 	}
 
 	private IModel createBaseModel(IModel baseModel) {
-		IModel retObject = new BaseModel(baseModel);
+		IModel retObject = new Model(baseModel);
 		return retObject;
 	}
 

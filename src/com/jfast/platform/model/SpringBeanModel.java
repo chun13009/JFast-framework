@@ -1,8 +1,8 @@
 package com.jfast.platform.model;
 
-import com.jfast.model.BaseModel;
+import com.jfast.model.Model;
 
-public class SpringBeanModel extends BaseModel {
+public class SpringBeanModel extends Model {
 	private static final long serialVersionUID = 5043913291098907382L;
 	public static final String TABLE_NAME = "SPRING_BEAN";
 

@@ -27,10 +27,18 @@ public abstract class IModel implements Serializable {
 	public abstract ModelDescriber getModelDescriber();
 	
 	public abstract Object get(String attributeName);
-	public abstract void set(String attributeName, Object columnValue);
+	public abstract <T> T get(String attributeName,Class<?> type);
+	public abstract void set(String attributeName, Object value);
 	
 	public abstract Map<String, Object> getAttributes();
 	public abstract void setAttributes(Map<String, Object> attributes);
+	
+	public abstract Object getSubObject(String subObject);
+	public abstract void setSubObject(String subObjectName, Object subObject);
+	public abstract void setSubObjects(Map<String, Object> subObjects);
+	public abstract String getModelName();
+	public abstract String getModelContent();
+	public abstract Map<String, Object> getSubObjects();
 	
 	
 
@@ -50,8 +58,19 @@ public abstract class IModel implements Serializable {
 
 	public abstract void setStatus(String status);
 	
-	
-
+	public abstract String getString(String attributeName);
+	public abstract Integer getInteger(String attributeName);
+	public abstract Long getLong(String attributeName);
+	public abstract java.math.BigInteger getBigInteger(String attributeName);
+	public abstract java.util.Date getDate(String attributeName);
+	public abstract java.sql.Time getTime(String attributeName);
+	public abstract java.sql.Timestamp getTimestamp(String attributeName);
+	public abstract Double getDouble(String attributeName);
+	public abstract Float getFloat(String attributeName);
+	public abstract Boolean getBoolean(String attributeName);
+	public abstract java.math.BigDecimal getBigDecimal(String attributeName);
+	public abstract Byte[] getBytes(String attributeName);
+	public abstract Number getNumber(String attributeName);
 	
 	public abstract String toXML();
 	public abstract String toJosn();
