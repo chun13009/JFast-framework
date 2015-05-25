@@ -1,13 +1,13 @@
-package com.jfast.common;
+package com.jfast.i18n;
 
 import java.io.FileInputStream;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class JCInputStreamEnumerator implements Enumeration{
+public class InputStreamEnumerator implements Enumeration<FileInputStream> {
 	private Enumeration<String> files;
 
-	public JCInputStreamEnumerator(Vector<String> files) {
+	public InputStreamEnumerator(Vector<String> files) {
 		this.files = files.elements();
 	}
 
@@ -15,7 +15,7 @@ public class JCInputStreamEnumerator implements Enumeration{
 		return this.files.hasMoreElements();
 	}
 
-	public Object nextElement() {
+	public FileInputStream nextElement() {
 		try {
 			return new FileInputStream(this.files.nextElement().toString());
 		} catch (Exception e) {

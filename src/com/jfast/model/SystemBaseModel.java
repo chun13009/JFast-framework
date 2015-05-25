@@ -1,5 +1,6 @@
 package com.jfast.model;
 
+import com.jfast.model.base.IModel;
 import com.jfast.model.base.Model;
 import com.jfast.spring.BeanManager;
 import com.jfast.system.SystemManager;
@@ -16,6 +17,10 @@ public class SystemBaseModel extends Model {
 	public static final String A_ID_NAMES = "ID_NAMES";
 	public static final String A_SYS_MGR_ID = "SYS_MGR_ID";
 
+	public SystemBaseModel(IModel model) {
+		super(model);
+	}
+	public SystemBaseModel() {}
 	public String getId() {
 		return getString(A_ID);
 	}

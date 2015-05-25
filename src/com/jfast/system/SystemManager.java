@@ -169,7 +169,14 @@ public class SystemManager {
 			SystemBaseModel model=new SystemBaseModel();
 			model.setName(modelName);
 			model.setSysMgrId(this.getName());
-			baseSystemManager.getDataBaseManager().query(model, null);
+			List<IModel> modelList=model.query(null);
+			if (modelList!=null&&modelList.size()>0) {
+				model=new SystemBaseModel(modelList.get(0));
+				if (model!=null) {
+					modelDescriber=ModelDescriberManager.createModelDescriber(model);
+					ModelDescriberManager.setModelDescriber(getName(), model.getName(), modelDescriber);
+				}
+			}
 		}
 		return modelDescriber;
 	}

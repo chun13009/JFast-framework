@@ -4,7 +4,11 @@ import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
 import org.apache.log4j.Logger;
+
+import com.jfast.i18n.PropertiesFileUtil;
+import com.jfast.i18n.PropertiesManager;
 
 public class JCLogger {
 	private static Locale locale;
@@ -263,6 +267,6 @@ public class JCLogger {
 		if (locale == null) {
 			locale = Locale.getDefault();
 		}
-		messages_ = JCLocale.getResourceBundle("LogMessage", locale);
+		messages_ = PropertiesFileUtil.getResourceBundle(PropertiesManager.I18N_DIR,"LogMessage", locale);
 	}
 }

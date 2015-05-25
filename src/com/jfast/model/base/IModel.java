@@ -65,6 +65,7 @@ public interface IModel {
 	public int getChildCount();
 
 	public Map<String, IModel> getChildren();
+	public void setChildren(Map<String, IModel> children);
 
 	public void setParent(IModel parentObject);
 

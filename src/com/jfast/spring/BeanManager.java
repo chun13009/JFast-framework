@@ -66,7 +66,6 @@ public class BeanManager  implements Serializable {
 	}
 	
 	public static void loadDBConfig() {
-		
 		List<SpringBean> beans = SpringBean.getActiveBeans();
 		if ((beans != null) && (!(beans.isEmpty()))) {
 			for (SpringBean bean : beans) {

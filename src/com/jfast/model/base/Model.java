@@ -34,10 +34,15 @@ public class Model implements IModel {
 	public Model() {
 	}
 	
-	public Model(IModel iModel) {
-		if (iModel!=null) {
-			this.setSystemManager(iModel.getSystemManager());
-			this.setModelDescriber(iModel.getModelDescriber());
+	public Model(IModel model) {
+		if (model!=null) {
+			this.setSystemManager(model.getSystemManager());
+			this.setModelDescriber(model.getModelDescriber());
+			this.setAttributes(model.getAttributes());
+			this.setSubObjects(model.getSubObjects());
+			this.setChildren(model.getChildren());
+			this.setParent(model.getParent());
+			this.setStatus(model.getStatus());
 		}
 	}
 	
@@ -193,6 +198,13 @@ public class Model implements IModel {
 	@Override
 	public Map<String, IModel> getChildren() {
 		return this.childModelMap;
+	}
+	
+	@Override
+	public void setChildren(Map<String, IModel> children) {
+		if (children!=null&&children.size()>0) {
+			childModelMap.putAll(children);
+		}
 	}
 	
 	
