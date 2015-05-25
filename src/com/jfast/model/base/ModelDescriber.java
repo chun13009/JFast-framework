@@ -1,10 +1,11 @@
-package com.jfast.model.describer;
+package com.jfast.model.base;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
  * 模型描述对象
  * @author jason
@@ -25,14 +26,19 @@ public class ModelDescriber implements Serializable{
 	public ModelDescriber() {}
 	
 	
-	public ModelDescriber(String modelName,String modelContent) {
+	public ModelDescriber(String modelName, String modelType, String modelContent, String iDNames) {
 		this.modelName = modelName;
+		this.modelType = modelType;
 		this.modelContent = modelContent;
+		IDNames = iDNames;
 	}
-	
-	
-	
-	
+
+
+
+
+
+
+
 	public ModelDescriber(String modelName,Map<String, ModelAttributeDescriber> attributeDescriberMap) {
 		this.modelName = modelName;
 		this.attributeDescriberMap = attributeDescriberMap;

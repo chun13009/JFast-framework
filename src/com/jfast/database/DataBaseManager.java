@@ -7,9 +7,9 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import com.jfast.database.dialect.BuildSQLDialect;
-import com.jfast.model.IModel;
 import com.jfast.model.UserSession;
-import com.jfast.model.describer.ModelDescriber;
+import com.jfast.model.base.IModel;
+import com.jfast.model.base.ModelDescriber;
 
 public abstract interface DataBaseManager {
 

@@ -28,11 +28,11 @@ import com.jfast.database.dialect.OracleBuildSQLDialect;
 import com.jfast.database.dialect.PostgreSQLBuildSQLDialect;
 import com.jfast.database.dialect.Sqlite3BuildSQLDialect;
 import com.jfast.database.dialect.sql.SQLObject;
-import com.jfast.model.Model;
-import com.jfast.model.IModel;
 import com.jfast.model.UserSession;
-import com.jfast.model.describer.ModelAttributeDescriber;
-import com.jfast.model.describer.ModelDescriber;
+import com.jfast.model.base.IModel;
+import com.jfast.model.base.Model;
+import com.jfast.model.base.ModelAttributeDescriber;
+import com.jfast.model.base.ModelDescriber;
 
 public class DataBaseSpringJDBCManager extends JdbcDaoSupport implements DataBaseManager {
 

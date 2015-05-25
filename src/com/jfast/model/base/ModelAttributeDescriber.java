@@ -1,4 +1,4 @@
-package com.jfast.model.describer;
+package com.jfast.model.base;
 
 import java.io.Serializable;
 /**

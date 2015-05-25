@@ -1,6 +1,7 @@
 package com.jfast.system;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -8,9 +9,11 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
 import com.jfast.database.DataBaseManager;
-import com.jfast.model.Model;
-import com.jfast.model.IModel;
+import com.jfast.model.SystemBaseModel;
 import com.jfast.model.UserSession;
+import com.jfast.model.base.IModel;
+import com.jfast.model.base.Model;
+import com.jfast.model.base.ModelDescriber;
 import com.jfast.model.tools.ModelDescriberManager;
 
 public class SystemManager {
@@ -21,6 +24,7 @@ public class SystemManager {
 	private DataSourceTransactionManager transactionManager;
 	private JtaTransactionManager jtaTxManager;
 	private DataSource dataSource;
+	private SystemManager baseSystemManager;
 
 	public void setName(String name) {
 		this.name = name;
@@ -120,5 +124,63 @@ public class SystemManager {
 			return mgr.getDataBaseManager().execute(modelList, userSession);
 		}
 	}
+	
+	
+	
+	public List<IModel> query(IModel model, UserSession userSession){
+		return dataBaseManager.query(model, userSession);
+	}
 
+	public List<IModel> query(IModel model, Integer startIndex, Integer pageSize, UserSession userSession){
+		return dataBaseManager.query(model, startIndex, pageSize, userSession);
+	}
+
+	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, UserSession userSession){
+		return dataBaseManager.query(sql, sqlParamMap, userSession);
+	}
+
+	public List<IModel> query(String sql, Map<String, Object> sqlParamMap, Integer startIndex, Integer pageSize, UserSession userSession){
+		return dataBaseManager.query(sql, sqlParamMap, startIndex, pageSize, userSession);
+	}
+
+	public List<IModel> query(IModel model, Map<String, Object> paramMap, UserSession userSession){
+		return dataBaseManager.query(model, paramMap, userSession);
+	}
+
+	public List<IModel> query(IModel model, Map<String, Object> paramMap, Integer startIndex, Integer pageSize, UserSession userSession){
+		return dataBaseManager.query(model, paramMap, startIndex, pageSize, userSession);
+	}
+
+	public Object Aggregate(IModel model, String function, String attributeName, Map<String, Object> paramMap, UserSession userSession){
+		return dataBaseManager.Aggregate(model, function, attributeName, paramMap, userSession);
+	}
+
+
+	
+	
+	
+
+	public ModelDescriber buildModelAttributeDescriber(ModelDescriber modelDescriber){
+		return dataBaseManager.buildModelAttributeDescriber(modelDescriber);
+	}
+	public ModelDescriber getModelDescriber(String modelName){
+		ModelDescriber modelDescriber= ModelDescriberManager.getModelDescriber(this.getName(), modelName);
+		if (modelDescriber==null&&baseSystemManager!=null) {
+			SystemBaseModel model=new SystemBaseModel();
+			model.setName(modelName);
+			model.setSysMgrId(this.getName());
+			baseSystemManager.getDataBaseManager().query(model, null);
+		}
+		return modelDescriber;
+	}
+
+	public SystemManager getBaseSystemManager() {
+		return baseSystemManager;
+	}
+
+	public void setBaseSystemManager(SystemManager baseSystemManager) {
+		this.baseSystemManager = baseSystemManager;
+	}
+	
+	
 }

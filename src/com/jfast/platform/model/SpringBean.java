@@ -2,12 +2,14 @@ package com.jfast.platform.model;
 
 import java.util.List;
 
+import com.jfast.model.BeanModel;
+
 /**
  * 
  * @author admin
  *
  */
-public class SpringBean extends SpringBeanModel {
+public class SpringBean extends BeanModel {
 	private static final long serialVersionUID = 5043913291098907382L;
 	
 	public static List<SpringBean> getActiveBeans() {

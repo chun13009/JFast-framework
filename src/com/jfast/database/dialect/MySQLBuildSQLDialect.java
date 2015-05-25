@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jfast.database.dialect.sql.SQLObject;
-import com.jfast.model.describer.ModelDescriber;
+import com.jfast.model.base.ModelDescriber;
 
 /**
  * 

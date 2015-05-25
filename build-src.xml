@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JFast-src" basedir="." default="dist">
+	<description>JFast-src build</description>
+	<property name="build.version" value="1.0.0" />
+	<property name="build.home" value="./run" />
+	<property name="build.lib" location="${build.home}/lib" />
+	<property name="build.framework.lib" location="${build.home}/lib/framework" />
+	<property name="thirdparty.lib" location="${build.lib}/thirdparty" />
+	<property name="thirdparty.commons.lib" location="${build.lib}/thirdparty/commons" />
+	<property name="thirdparty.spring.lib" location="${build.lib}/thirdparty/spring" />
+	<property name="thirdparty.transactions.lib" location="${build.lib}/thirdparty/transactions" />
+	<property name="thirdparty.zkoss.lib" location="${build.lib}/thirdparty/zkoss" />
+	<property name="src.dir" location="./src" />
+	<property name="class.dir" location="./class" />
+	<tstamp>
+		<format property="bak.time" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+	<path id="classpath">
+		<fileset dir="${thirdparty.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.commons.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.spring.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.transactions.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.zkoss.lib}" includes="*.jar" />
+		<fileset dir="${build.lib}" includes="*.jar" />
+		<fileset dir="${build.framework.lib}" includes="*.jar" excludes="JFast-src*.jar" />
+	</path>
+	<path id="srcpath">
+		<pathelement location="./src" />
+	</path>
+	<target name="dist">
+		<jar destfile="${build.framework.lib}/JFast-src-${build.version}.jar">
+			<fileset dir="${src.dir}">
+				<include name="com/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+		</jar>
+		<echo> finished dist JFast-src.jar </echo>
+	</target>
+</project>

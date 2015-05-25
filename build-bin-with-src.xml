@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="JFast-bin-with-src" basedir="." default="JFast-bin-with-src">
+	<description>JFast-bin-with-src build</description>
+	<property name="build.version" value="1.0.0" />
+	<property name="build.home" value="./run" />
+	<property name="build.lib" location="${build.home}/lib" />
+	<property name="build.framework.lib" location="${build.home}/lib/framework" />
+	<property name="thirdparty.lib" location="${build.lib}/thirdparty" />
+	<property name="thirdparty.commons.lib" location="${build.lib}/thirdparty/commons" />
+	<property name="thirdparty.spring.lib" location="${build.lib}/thirdparty/spring" />
+	<property name="thirdparty.transactions.lib" location="${build.lib}/thirdparty/transactions" />
+	<property name="thirdparty.zkoss.lib" location="${build.lib}/thirdparty/zkoss" />
+	<property name="src.dir" location="./src" />
+	<property name="class.dir" location="./class" />
+	<tstamp>
+		<format property="bak.time" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+	<path id="classpath">
+		<fileset dir="${thirdparty.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.commons.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.spring.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.transactions.lib}" includes="*.jar" />
+		<fileset dir="${thirdparty.zkoss.lib}" includes="*.jar" />
+		<fileset dir="${build.lib}" includes="*.jar" />
+		<fileset dir="${build.framework.lib}" includes="*.jar" excludes="JFast-bin-with-src*.jar" />
+	</path>
+	<path id="srcpath">
+		<pathelement location="./src" />
+	</path>
+	<target name="JFast-bin-with-src" depends="clean, build, dist,classclean">
+		<echo> finished build JFast-bin-with-src code</echo>
+	</target>
+	<target name="clean">
+		<delete failonerror="false">
+			<fileset dir="${build.lib}" includes="JFast-bin-with-src*.jar" />
+			<fileset dir="${class.dir}" includes="**/*.*" />
+		</delete>
+		<mkdir dir="${class.dir}" />
+	</target>
+	<target name="build" depends="clean">
+		<javac classpathref="classpath" source="1.5" destdir="${class.dir}" debug="on" fork="yes" encoding="UTF-8" failonerror="true">
+			<src refid="srcpath" />
+		</javac>
+		<copy todir="${class.dir}" overwrite="true" failonerror="true">
+			<fileset dir="${src.dir}">
+				<include name="**/*.java" />
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="dist" depends="build">
+		<jar destfile="${build.framework.lib}/JFast-bin-with-src-${build.version}.jar">
+			<fileset dir="${class.dir}">
+				<include name="com/**/*.*" />
+				<include name="*.xml" />
+				<include name="*.properties" />
+			</fileset>
+			<manifest>
+				<section name="version">
+					<attribute name="Built-By" value="JT" />
+					<attribute name="version" value="JFast-bin-with-src@${bak.time}" />
+				</section>
+			</manifest>
+		</jar>
+		<echo> finished dist JFast-bin-with-src.jar </echo>
+	</target>
+	<target name="classclean">
+		<delete dir="./bin/"></delete>
+		<echo> finished JFast-bin-with-src classclean</echo>
+	</target>
+</project>
