@@ -25,7 +25,7 @@ public interface IModel {
 	public ModelDescriber getModelDescriber();
 	
 	public Object get(String attributeName);
-	public <T> T get(String attributeName,Class<?> type);
+	public <T> T get(String attributeName,Class<T> type);
 	public void set(String attributeName, Object value);
 	
 	public Map<String, Object> getAttributes();

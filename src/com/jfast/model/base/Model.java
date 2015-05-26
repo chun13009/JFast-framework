@@ -116,8 +116,8 @@ public class Model implements IModel {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T get(String attributeName, Class<?> type) {
-		return (T)ConvertUtils.convert(get(attributeName), type);
+	public <T> T get(String attributeName, Class<T> type) {
+		return (T) ConvertUtils.convert(get(attributeName), type);
 	}
 
 	@Override
